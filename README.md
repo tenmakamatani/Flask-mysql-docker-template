@@ -15,11 +15,17 @@ $ cp .env.example .env
 ### Run on docker
 
 ```
-$ docker-compose up -d --build
+$ make start
 ```
 
 ### Stop
 
 ```
-$ docker-compose stop
+$ make stop
+```
+
+### Show logs
+
+```
+$ make logs
 ```
