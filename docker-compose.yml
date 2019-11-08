@@ -1,0 +1,30 @@
+version: '3'
+services:
+  flask:
+    container_name: flask
+    env_file: .env
+    build: ./python
+    volumes:
+      - ./python/src:/app
+    tty: true
+    ports:
+      - 5000:5000
+    links:
+      - mysql
+  mysql:
+    container_name: mysql
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE:      TKKODC_backend
+      MYSQL_USER:          docker
+      MYSQL_PASSWORD:      docker
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/sqls:/docker-entrypoint-initdb.d
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
