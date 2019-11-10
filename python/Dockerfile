@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 
-ARG project_dir=/app
+ARG project_dir=/src
 
 WORKDIR ${project_dir}
 

@@ -1,11 +1,25 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+
+from flask_restful import Api
+
 import os
 
-app = Flask(__name__)
+from controllers.InformationController import InformationController
+
+def create_app():
+
+    app = Flask(__name__)
+
+    api = Api(app)
+    api.add_resource(InformationController, '/informations')
+
+    return app
+
+app = create_app()
 
 @app.route('/test', methods=['GET'])
 def test():
-    return 'test'
+    return 'ok'
 
 PORT = int(os.environ.get('PORT'))
 if __name__ == '__main__':

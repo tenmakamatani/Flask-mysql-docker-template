@@ -5,7 +5,7 @@ services:
     env_file: .env
     build: ./python
     volumes:
-      - ./python/src:/app
+      - ./python/src:/src
     tty: true
     ports:
       - 5000:5000
